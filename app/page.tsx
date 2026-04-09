@@ -91,33 +91,43 @@ export default function HomePage() {
           </p>
 
           {/* Tabs */}
-          <div className="inline-flex p-1 bg-white/20 backdrop-blur-md rounded-full mb-8 border border-white/30">
-            <button
-              onClick={() => setActiveTab("hire")}
-              className={`px-6 py-2.5 rounded-full text-sm font-medium transition-all ${
-                activeTab === "hire"
-                  ? "bg-white text-black shadow-lg"
-                  : "text-white hover:bg-white/10"
-              }`}
-            >
-              For clients
-            </button>
-            <button
-              onClick={() => setActiveTab("work")}
-              className={`px-6 py-2.5 rounded-full text-sm font-medium transition-all ${
-                activeTab === "work"
-                  ? "bg-white text-black shadow-lg"
-                  : "text-white hover:bg-white/10"
-              }`}
-            >
-              For editor
-            </button>
-          </div>
+<div className="inline-flex p-1 bg-white/20 backdrop-blur-md rounded-full mb-8 border border-white/30">
+  <button
+    onClick={() => setActiveTab("hire")}
+    className={`px-6 py-2.5 rounded-full text-sm font-medium transition-all ${
+      activeTab === "hire"
+        ? "bg-white text-black shadow-lg"
+        : "text-white hover:bg-white/10"
+    }`}
+  >
+    For clients
+  </button>
+  <button
+    onClick={() => setActiveTab("work")}
+    className={`px-6 py-2.5 rounded-full text-sm font-medium transition-all ${
+      activeTab === "work"
+        ? "bg-white text-black shadow-lg"
+        : "text-white hover:bg-white/10"
+    }`}
+  >
+    For editor
+  </button>
+</div>
 
-          {/* Search */}
-          <div className="max-w-2xl mx-auto">
-            <SearchBar large />
-          </div>
+{/* Search OR Explore Works button based on tab */}
+{activeTab === "hire" ? (
+  <div className="max-w-2xl mx-auto">
+    <SearchBar large />
+  </div>
+) : (
+  <div className="flex justify-center">
+    <Link href="/work">
+      <button className="px-16 py-4 bg-white text-black font-semibold rounded-xl text-lg hover:bg-white/90 transition-all shadow-lg">
+        Explore Works
+      </button>
+    </Link>
+  </div>
+)}
 
           {/* Popular Searches */}
           <div className="mt-8">

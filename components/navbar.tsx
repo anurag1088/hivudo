@@ -26,11 +26,11 @@ export function Navbar() {
               <Link href="/browse" className="text-foreground hover:text-primary transition-colors font-medium">
                 Find Editors
               </Link>
-              <Link href="#" className="text-foreground hover:text-primary transition-colors font-medium flex items-center gap-1">
+              <Link href="/work" className="text-foreground hover:text-primary transition-colors font-medium flex items-center gap-1">
                 Find Work
                 <ChevronDown className="h-4 w-4" />
               </Link>
-              <Link href="#" className="text-foreground hover:text-primary transition-colors font-medium">
+              <Link href="/why-hivudo" className="text-foreground hover:text-primary transition-colors font-medium">
                 Why Hivudo
               </Link>
             </div>
@@ -69,14 +69,14 @@ export function Navbar() {
                 Find Editors
               </Link>
               <Link
-                href="#"
+                href="/work"
                 className="text-foreground hover:text-primary transition-colors font-medium"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 Find Work
               </Link>
               <Link
-                href="#"
+                href="/why-hivudo"
                 className="text-foreground hover:text-primary transition-colors font-medium"
                 onClick={() => setMobileMenuOpen(false)}
               >
