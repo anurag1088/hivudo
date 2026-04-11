@@ -9,6 +9,11 @@ export default function WorkPage() {
         We are building something great for video editors. Be the first to know when we launch.
       </p>
       <div className="flex gap-2 w-full max-w-md">
+        <input 
+        type="name"
+        placeholder="enter your name"
+        className="flex-1 px-4 py-3 rounded-lg border border-gray-200 bg-white text-gray-800 outline-none focus:border-green-400"
+        />
         <input
           type="email"
           placeholder="Enter your email..."

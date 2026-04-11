@@ -4,9 +4,11 @@ import Link from "next/link"
 import { useState } from "react"
 import { Menu, X, ChevronDown } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { SignInButton, SignUpButton, UserButton, useAuth } from '@clerk/nextjs'
 
 export function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const { isSignedIn } = useAuth()
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background border-b border-border">
@@ -36,16 +38,32 @@ export function Navbar() {
             </div>
           </div>
 
-          {/* Auth Buttons */}
+          {/* Auth Buttons Desktop */}
           <div className="hidden md:flex items-center gap-4">
-            <Link href="/login" className="text-foreground hover:text-primary transition-colors font-medium">
-              Log In
-            </Link>
-            <Link href="/signup">
-              <Button variant="outline" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground">
-                Sign Up
-              </Button>
-            </Link>
+            {isSignedIn ? (
+              <UserButton>
+                <UserButton.MenuItems>
+                  <UserButton.Link
+                    label="My Profile"
+                    labelIcon={<span style={{fontSize:"14px"}}>👤</span>}
+                    href="/profile"
+                  />
+                </UserButton.MenuItems>
+              </UserButton>
+            ) : (
+              <>
+                <SignInButton mode="modal">
+                  <button className="text-foreground hover:text-primary transition-colors font-medium">
+                    Log In
+                  </button>
+                </SignInButton>
+                <SignUpButton mode="modal">
+                  <Button variant="outline" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground">
+                    Sign Up
+                  </Button>
+                </SignUpButton>
+              </>
+            )}
           </div>
 
           {/* Mobile Menu Button */}
@@ -83,16 +101,30 @@ export function Navbar() {
                 Why Hivudo
               </Link>
               <div className="flex gap-3 pt-4 border-t border-border">
-                <Link href="/login" className="flex-1">
-                  <Button variant="ghost" className="w-full text-foreground">
-                    Log In
-                  </Button>
-                </Link>
-                <Link href="/signup" className="flex-1">
-                  <Button className="w-full bg-primary text-primary-foreground">
-                    Sign Up
-                  </Button>
-                </Link>
+                {isSignedIn ? (
+                  <UserButton>
+                    <UserButton.MenuItems>
+                      <UserButton.Link
+                        label="My Profile"
+                        labelIcon={<span style={{fontSize:"14px"}}>👤</span>}
+                        href="/profile"
+                      />
+                    </UserButton.MenuItems>
+                  </UserButton>
+                ) : (
+                  <>
+                    <SignInButton mode="modal">
+                      <Button variant="ghost" className="w-full text-foreground">
+                        Log In
+                      </Button>
+                    </SignInButton>
+                    <SignUpButton mode="modal">
+                      <Button className="w-full bg-primary text-primary-foreground">
+                        Sign Up
+                      </Button>
+                    </SignUpButton>
+                  </>
+                )}
               </div>
             </div>
           </div>
